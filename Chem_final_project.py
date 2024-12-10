@@ -187,8 +187,8 @@ def check_answer(state: State, answer: str) -> Page:
         f"Current Score: {state.score}",
         Button("Restart Quiz", login)
     ])
-state = State(score=0, current_element="", logged_in=False)
-start_server(State(0, "", False))
+state = State(score=0, current_element="", logged_in=True)
+start_server(State(0, "", True))
 
 assert_equal(
  check_answer(State(score=0, current_element='1s2 2s2 2p6 3s2 3p6 4s2 3d10 4p6 5s2 4d10 5p6 6s2 5d10 6p1', logged_in=True), 'Thallium'),
