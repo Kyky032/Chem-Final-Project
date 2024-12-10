@@ -1,1 +1,34 @@
+name: Deploy to GitHub Pages
+
 on:
+  push:
+    branches:
+      - main  # Trigger workflow on push to the main branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest  # Action runs on GitHub's Ubuntu Runner
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4  # Get the code from the repo
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.x'  # Set the Python version
+
+    - name: Install Dependencies
+      run: |
+        pip install -r requirements.txt
+
+    - name: Run Tests (Optional)
+      run: |
+        # If you have tests, run them here
+        echo "Running Tests..."
+    
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./public  # Directory you want to deploy
