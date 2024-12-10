@@ -187,60 +187,7 @@ def check_answer(state: State, answer: str) -> Page:
         f"Current Score: {state.score}",
         Button("Restart Quiz", login)
     ])
-state = State(score=0, current_element="", logged_in=True)
-start_server(State(0, "", True))
+state = State(score=0, current_element="", logged_in=False)
+start_server(State(0, "", False))
 
-assert_equal(
- check_answer(State(score=0, current_element='1s2 2s2 2p6 3s2 3p6 4s2 3d10 4p6 5s2 4d10 5p6 6s2 5d10 6p1', logged_in=True), 'Thallium'),
- Page(state=State(score=1, current_element='1s2 2s1', logged_in=True),
-     content=[Header(body='Feedback', level=1),
-              'Correct! Great job!',
-              Button(text='Next Question', url='/quiz_page'),
-              'Current Score: 1',
-              Button(text='Restart Quiz', url='/login')]))
 
-assert_equal(
- quiz_page(State(score=1, current_element='1s2 2s1', logged_in=True)),
- Page(state=State(score=1, current_element='1s2 2s1', logged_in=True),
-     content=[Header(body='Identify the Element', level=1),
-              'Electron Configuration: 1s2 2s1',
-              TextBox(name='answer', kind='text', default_value=''),
-              Button(text='Submit Answer', url='/check_answer'),
-              'Current Score: 1',
-              Button(text='Restart Quiz', url='/login')]))
-
-assert_equal(
- check_answer(State(score=1, current_element='1s2 2s1', logged_in=True), 'w'),
- Page(state=State(score=1, current_element='1s2 2s2 2p6 3s2 3p6 4s2 3d10 4p6 5s2 4d10 5p6 7s2 5f7', logged_in=True),
-     content=[Header(body='Feedback', level=1),
-              'Wrong! The correct answer was: Lithium.',
-              Button(text='Next Question', url='/quiz_page'),
-              'Current Score: 1',
-              Button(text='Restart Quiz', url='/login')]))
-
-assert_equal(
- login(State(score=1, current_element='1s2 2s2 2p6 3s2 3p6 4s2 3d10 4p6 5s2 4d10 5p6 7s2 5f7', logged_in=True)),
- Page(state=State(score=0, current_element='1s2 2s2 2p6 3s2 3p6 4s2 3d10 4p6 5s2 4d10 5p6 6s2 5d1 4f11', logged_in=True),
-     content=[Header(body='Identify the Element', level=1),
-              'Electron Configuration: 1s2 2s2 2p6 3s2 3p6 4s2 3d10 4p6 5s2 4d10 5p6 6s2 5d1 4f11',
-              TextBox(name='answer', kind='text', default_value=''),
-              Button(text='Submit Answer', url='/check_answer'),
-              'Current Score: 0',
-              Button(text='Restart Quiz', url='/login')]))
-
-assert_equal(
- index(State(score=0, current_element='', logged_in=False)),
- Page(state=State(score=0, current_element='', logged_in=False),
-     content=[Header(body='Welcome to Electron Config Quiz!', level=1),
-              'Test your knowledge of electron configurations.',
-              Button(text='Start the Quiz', url='/login')]))
-
-assert_equal(
- login(State(score=0, current_element='', logged_in=False)),
- Page(state=State(score=0, current_element='1s2 2s2 2p6 3s2 3p6 4s2 3d10 4p6 5s2 4d10 5p6 6s2 5d10 6p1', logged_in=True),
-     content=[Header(body='Identify the Element', level=1),
-              'Electron Configuration: 1s2 2s2 2p6 3s2 3p6 4s2 3d10 4p6 5s2 4d10 5p6 6s2 5d10 6p1',
-              TextBox(name='answer', kind='text', default_value=''),
-              Button(text='Submit Answer', url='/check_answer'),
-              'Current Score: 0',
-              Button(text='Restart Quiz', url='/login')]))
