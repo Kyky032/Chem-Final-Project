@@ -3,13 +3,6 @@ from dataclasses import dataclass
 import random
 from pathlib import Path
 
-def export_static_site():
-    state = State(score=0, current_element="")
-    page = index(state).to_html()
-    output_dir = Path("public")
-    output_dir.mkdir(exist_ok=True)
-    (output_dir / "index.html").write_text(page)
-
 @dataclass
 class State:
     score: int
@@ -187,7 +180,7 @@ def check_answer(state: State, answer: str) -> Page:
         f"Current Score: {state.score}",
         Button("Restart Quiz", login)
     ])
-state = State(score=0, current_element="", logged_in=False)
+
 start_server(State(0, "", False))
 
 
