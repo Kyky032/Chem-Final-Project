@@ -187,7 +187,7 @@ def check_answer(state: State, answer: str) -> Page:
         f"Current Score: {state.score}",
         Button("Restart Quiz", login)
     ])
-
+state = State(score=0, current_element="", logged_in=False)
 start_server(State(0, "", False))
 
 assert_equal(
