@@ -22,13 +22,8 @@ jobs:
       run: |
         pip install -r requirements.txt
 
-    - name: Run Tests (Optional)
-      run: |
-        # If you have tests, run them here
-        echo "Running Tests..."
-    
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
+        github_token: ${{ secrets.GH_TOKEN }}  # Use the secret token
         publish_dir: ./public  # Directory you want to deploy
