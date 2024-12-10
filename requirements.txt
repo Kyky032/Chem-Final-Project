@@ -1,6 +1,2 @@
 drafter
 bakery
-
-git add requirements.txt
-git commit -m "Add dependencies to requirements.txt"
-git push origin main
