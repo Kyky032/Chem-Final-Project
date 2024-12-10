@@ -25,10 +25,10 @@ jobs:
     - name: Build Site
       run: |
         mkdir -p ./public
-        echo "<!DOCTYPE html><html><body><h1>Welcome to My Site</h1></body></html>" > ./public/index.html
+        echo "<!DOCTYPE html><html><body><h1>Welcome to My Chemistry Site</h1></body></html>" > ./public/index.html
 
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
         github_token: ${{ secrets.GH_TOKEN }}
-        publish_dir: ./public.Chem_final_project.py
+        publish_dir: ./public
