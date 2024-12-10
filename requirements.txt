@@ -1,7 +1,6 @@
 drafter
 bakery
-echo "drafter" > requirements.txt
-echo "bakery" >> requirements.txt
+
 git add requirements.txt
 git commit -m "Add dependencies to requirements.txt"
 git push origin main
